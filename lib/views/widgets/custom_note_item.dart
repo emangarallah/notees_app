@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notees_app/model/note_model.dart';
 import 'package:notees_app/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const  NoteItem ({super.key});
+  const  NoteItem ({super.key, required this.note});
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class NoteItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(top:24,bottom: 24,left: 16),
         decoration: BoxDecoration(
-          color:const  Color(0xffFFCC80),
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -24,13 +26,13 @@ class NoteItem extends StatelessWidget {
           // mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ListTile(
-              title: Text('Flutter Tipes',style: TextStyle(color: Colors.black,
+              title: Text(note.title,style: TextStyle(color: Colors.black,
                   fontSize: 26
               ),
               ),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16,bottom: 16),
-                child: Text('Build your career with  tharowat ',style: TextStyle(color: Colors.black.withOpacity(.5),fontSize: 18),
+                child: Text(note.subTitle,style: TextStyle(color: Colors.black.withOpacity(.5),fontSize: 18),
                 ),
               ),
               trailing:IconButton(onPressed: (){}, icon: const FaIcon(FontAwesomeIcons.trash,color: Colors.black,size: 30,) ,
@@ -40,7 +42,7 @@ class NoteItem extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 24),
-              child: Text('May21 2022',style: TextStyle(
+              child: Text(note.date,style: TextStyle(
                   color:Colors.black.withOpacity(.4),
                   fontSize: 16
 
